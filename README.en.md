@@ -116,17 +116,10 @@ plugin set. Finish the setup with:
 > `gr` references, `K` hover, `<leader>D` type definition.
 
 Mason installs: `lua-language-server`, `stylua`, `css-lsp`, `html-lsp`,
-`typescript-language-server`, `vue-language-server`, `deno`, `prettier`,
-`clangd`, `clang-format`.
+`typescript-language-server`, `vtsls`, `vue-language-server`, `deno`,
+`prettier`, `clangd`, `clang-format`, `cmake-language-server`, `pyright`.
 
-> ⚠️ **Consistency note**: `vtsls` is enabled in `lspconfig.lua` but is
-> **not** in `:MasonInstallAll`'s list. On a fresh machine run:
->
-> ```vim
-> :MasonInstall vtsls
-> ```
->
-> Also, `deno` is installed by Mason but never enabled via
+> ⚠️ **Consistency note**: `deno` is installed by Mason but never enabled via
 > `vim.lsp.enable("deno")` in `lspconfig.lua`, so it does not take effect.
 
 ### Terminal & AI
