@@ -116,11 +116,13 @@ plugin set. Finish the setup with:
 > `gr` references, `K` hover, `<leader>D` type definition.
 
 Mason installs: `lua-language-server`, `stylua`, `css-lsp`, `html-lsp`,
-`typescript-language-server`, `vtsls`, `vue-language-server`, `deno`,
-`prettier`, `clangd`, `clang-format`, `cmake-language-server`, `pyright`.
+`typescript-language-server`, `vtsls`, `vue-language-server`, `prettier`,
+`clangd`, `clang-format`, `cmake-language-server`, `pyright`.
 
-> ⚠️ **Consistency note**: `deno` is installed by Mason but never enabled via
-> `vim.lsp.enable("deno")` in `lspconfig.lua`, so it does not take effect.
+> **Manual install**: to add a server outside this list, open the manager with
+> `:Mason` and pick `Install`, or run `:MasonInstall <package>` (e.g.
+> `:MasonInstall pyright`); then enable it in `lspconfig.lua` with
+> `vim.lsp.enable("<server>")`.
 
 ### Terminal & AI
 - **toggleterm.nvim** — floating / horizontal / vertical terminals.

@@ -9,7 +9,6 @@ local options = {
         "typescript-language-server",
         "vtsls",
         "vue-language-server",
-        "deno",
         "prettier",
 
         -- c/cpp stuff

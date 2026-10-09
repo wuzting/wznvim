@@ -113,11 +113,12 @@ nvim
 > `K` 悬停文档、`<leader>D` 类型定义。
 
 Mason 会安装：`lua-language-server`、`stylua`、`css-lsp`、`html-lsp`、
-`typescript-language-server`、`vtsls`、`vue-language-server`、`deno`、
-`prettier`、`clangd`、`clang-format`、`cmake-language-server`、`pyright`。
+`typescript-language-server`、`vtsls`、`vue-language-server`、`prettier`、
+`clangd`、`clang-format`、`cmake-language-server`、`pyright`。
 
-> ⚠️ **一致性提示**：`deno` 虽被 Mason 安装，但 `lspconfig.lua` 未调用
-> `vim.lsp.enable("deno")`，当前不会生效。
+> **手动安装**：如需安装列表之外的服务器，可用 `:Mason` 打开管理界面选择
+> `Install`，或直接执行 `:MasonInstall <package>`（如 `:MasonInstall pyright`）；
+> 安装后在 `lspconfig.lua` 中用 `vim.lsp.enable("<server>")` 启用即可。
 
 ### 终端与 AI
 - **toggleterm.nvim** — 浮动 / 水平 / 垂直终端。
