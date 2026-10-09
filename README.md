@@ -59,12 +59,13 @@ nvim
     └── plugins/
         ├── init.lua             # 传给 lazy.nvim 的插件清单
         └── configs/             # 各插件的配置模块
-            ├── alpha.lua        ├── lspconfig.lua   ├── osc52.lua
-            ├── blankline.lua    ├── mason.lua       ├── supermaven.lua
-            ├── catppuccin.lua   ├── nvimtree.lua    ├── telescope.lua
-            ├── cmp.lua          ├── others.lua      ├── toggleterm.lua
-            ├── gitsigns.lua     ├── plantuml_preview.lua
-            └── lazy_nvim.lua    └── treesitter.lua
+            ├── aerial.lua       ├── lspconfig.lua   ├── osc52.lua
+            ├── alpha.lua        ├── mason.lua       ├── supermaven.lua
+            ├── blankline.lua    ├── nvimtree.lua    ├── telescope.lua
+            ├── catppuccin.lua   ├── others.lua      ├── toggleterm.lua
+            ├── cmp.lua          ├── plantuml_preview.lua
+            ├── gitsigns.lua     ├── treesitter.lua
+            └── lazy_nvim.lua
 ```
 
 ## 功能特性
@@ -87,17 +88,44 @@ nvim
 
 ### LSP 与补全
 - **mason.nvim** — 安装与管理语言服务器、格式化工具。
-- **nvim-lspconfig** — 配置了 `html`、`cssls`、`vtsls`、`vue_ls`、
-  `clangd`、`cmake`、`lua_ls`、`pyright`。
+- **nvim-lspconfig** — 已为下表语言启用 LSP，提供补全、定义跳转、悬停、
+  引用、重命名与诊断。
 - **nvim-cmp** 搭配 `cmp-nvim-lsp`、`cmp-buffer`、`cmp-path`、`cmp-nvim-lua`、
   `cmp_luasnip` — 自动补全。
 - **LuaSnip** + **friendly-snippets** — 代码片段。
 - **nvim-treesitter** — 语法解析、高亮、缩进与折叠。
 - **supermaven-nvim** — 行内 AI 补全。
 
+#### 支持的语言（补全 / 跳转）
+
+| 语言 | 文件类型 | Language Server | 补全 | 定义跳转 | 备注 |
+| --- | --- | --- | --- | --- | --- |
+| HTML | `html` | `html-lsp` | ✅ | ✅ | |
+| CSS / SCSS / LESS | `css` / `scss` / `less` | `css-lsp` | ✅ | ✅ | |
+| JavaScript / TypeScript | `js` / `jsx` / `ts` / `tsx` | `vtsls` | ✅ | ✅ | 基于 tsserver |
+| Vue | `vue` | `vue_ls` + `vtsls` | ✅ | ✅ | 经 `@vue/typescript-plugin` 共享 ts 能力 |
+| C / C++ | `c` / `cpp` / `h` / `hpp` | `clangd` | ✅ | ✅ | `<A-o>` 源文件 ↔ 头文件切换 |
+| Lua | `lua` | `lua_ls` | ✅ | ✅ | 已预置 `nvim` 全局 |
+| Python | `python` | `pyright` | ✅ | ✅ | ⚠️ 需手动安装（见下） |
+| CMake | `cmake` | `cmake-language-server` | ✅ | ✅ | ⚠️ 需手动安装（见下） |
+
+> 跳转/查看相关按键：`gd` 定义、`gD` 声明、`gi` 实现、`gr` 引用、
+> `K` 悬停文档、`<leader>D` 类型定义。
+
 Mason 会安装：`lua-language-server`、`stylua`、`css-lsp`、`html-lsp`、
 `typescript-language-server`、`vue-language-server`、`deno`、`prettier`、
 `clangd`、`clang-format`。
+
+> ⚠️ **一致性提示**：`vtsls`、`pyright`、`cmake-language-server` 已在
+> `lspconfig.lua` 中启用，但**不在** `:MasonInstallAll` 的安装列表里，
+> 新机器需补充执行：
+>
+> ```vim
+> :MasonInstall vtsls pyright cmake-language-server
+> ```
+>
+> 另外 `deno` 虽被 Mason 安装，但 `lspconfig.lua` 未调用
+> `vim.lsp.enable("deno")`，当前不会生效。
 
 ### 终端与 AI
 - **toggleterm.nvim** — 浮动 / 水平 / 垂直终端。

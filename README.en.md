@@ -61,12 +61,13 @@ plugin set. Finish the setup with:
     └── plugins/
         ├── init.lua             # Plugin specs passed to lazy.nvim
         └── configs/             # Per-plugin configuration modules
-            ├── alpha.lua        ├── lspconfig.lua   ├── osc52.lua
-            ├── blankline.lua    ├── mason.lua       ├── supermaven.lua
-            ├── catppuccin.lua   ├── nvimtree.lua    ├── telescope.lua
-            ├── cmp.lua          ├── others.lua      ├── toggleterm.lua
-            ├── gitsigns.lua     ├── plantuml_preview.lua
-            └── lazy_nvim.lua    └── treesitter.lua
+            ├── aerial.lua       ├── lspconfig.lua   ├── osc52.lua
+            ├── alpha.lua        ├── mason.lua       ├── supermaven.lua
+            ├── blankline.lua    ├── nvimtree.lua    ├── telescope.lua
+            ├── catppuccin.lua   ├── others.lua      ├── toggleterm.lua
+            ├── cmp.lua          ├── plantuml_preview.lua
+            ├── gitsigns.lua     ├── treesitter.lua
+            └── lazy_nvim.lua
 ```
 
 ## Features
@@ -90,17 +91,44 @@ plugin set. Finish the setup with:
 
 ### LSP & Completion
 - **mason.nvim** — installs/manages servers and formatters.
-- **nvim-lspconfig** — configures: `html`, `cssls`, `vtsls`, `vue_ls`,
-  `clangd`, `cmake`, `lua_ls`, `pyright`.
+- **nvim-lspconfig** — enables LSP for the languages below, providing
+  completion, go-to-definition, hover, references, rename and diagnostics.
 - **nvim-cmp** with `cmp-nvim-lsp`, `cmp-buffer`, `cmp-path`, `cmp-nvim-lua`,
   `cmp_luasnip` — completion.
 - **LuaSnip** + **friendly-snippets** — snippets.
 - **nvim-treesitter** — parsing, highlighting, indentation and folding.
 - **supermaven-nvim** — inline AI completion.
 
+#### Supported languages (completion / navigation)
+
+| Language | Filetype(s) | Language Server | Completion | Go-to-definition | Notes |
+| --- | --- | --- | --- | --- | --- |
+| HTML | `html` | `html-lsp` | ✅ | ✅ | |
+| CSS / SCSS / LESS | `css` / `scss` / `less` | `css-lsp` | ✅ | ✅ | |
+| JavaScript / TypeScript | `js` / `jsx` / `ts` / `tsx` | `vtsls` | ✅ | ✅ | backed by tsserver |
+| Vue | `vue` | `vue_ls` + `vtsls` | ✅ | ✅ | shares TS via `@vue/typescript-plugin` |
+| C / C++ | `c` / `cpp` / `h` / `hpp` | `clangd` | ✅ | ✅ | `<A-o>` switches source ↔ header |
+| Lua | `lua` | `lua_ls` | ✅ | ✅ | `nvim` global preconfigured |
+| Python | `python` | `pyright` | ✅ | ✅ | ⚠️ manual install (see below) |
+| CMake | `cmake` | `cmake-language-server` | ✅ | ✅ | ⚠️ manual install (see below) |
+
+> Navigation keys: `gd` definition, `gD` declaration, `gi` implementation,
+> `gr` references, `K` hover, `<leader>D` type definition.
+
 Mason installs: `lua-language-server`, `stylua`, `css-lsp`, `html-lsp`,
 `typescript-language-server`, `vue-language-server`, `deno`, `prettier`,
 `clangd`, `clang-format`.
+
+> ⚠️ **Consistency note**: `vtsls`, `pyright` and `cmake-language-server` are
+> enabled in `lspconfig.lua` but are **not** in `:MasonInstallAll`'s list. On a
+> fresh machine run:
+>
+> ```vim
+> :MasonInstall vtsls pyright cmake-language-server
+> ```
+>
+> Also, `deno` is installed by Mason but never enabled via
+> `vim.lsp.enable("deno")` in `lspconfig.lua`, so it does not take effect.
 
 ### Terminal & AI
 - **toggleterm.nvim** — floating / horizontal / vertical terminals.
