@@ -109,8 +109,8 @@ plugin set. Finish the setup with:
 | Vue | `vue` | `vue_ls` + `vtsls` | ✅ | ✅ | shares TS via `@vue/typescript-plugin` |
 | C / C++ | `c` / `cpp` / `h` / `hpp` | `clangd` | ✅ | ✅ | `<A-o>` switches source ↔ header |
 | Lua | `lua` | `lua_ls` | ✅ | ✅ | `nvim` global preconfigured |
-| Python | `python` | `pyright` | ✅ | ✅ | ⚠️ manual install (see below) |
-| CMake | `cmake` | `cmake-language-server` | ✅ | ✅ | ⚠️ manual install (see below) |
+| Python | `python` | `pyright` | ✅ | ✅ | |
+| CMake | `cmake` | `cmake-language-server` | ✅ | ✅ | |
 
 > Navigation keys: `gd` definition, `gD` declaration, `gi` implementation,
 > `gr` references, `K` hover, `<leader>D` type definition.
@@ -119,12 +119,11 @@ Mason installs: `lua-language-server`, `stylua`, `css-lsp`, `html-lsp`,
 `typescript-language-server`, `vue-language-server`, `deno`, `prettier`,
 `clangd`, `clang-format`.
 
-> ⚠️ **Consistency note**: `vtsls`, `pyright` and `cmake-language-server` are
-> enabled in `lspconfig.lua` but are **not** in `:MasonInstallAll`'s list. On a
-> fresh machine run:
+> ⚠️ **Consistency note**: `vtsls` is enabled in `lspconfig.lua` but is
+> **not** in `:MasonInstallAll`'s list. On a fresh machine run:
 >
 > ```vim
-> :MasonInstall vtsls pyright cmake-language-server
+> :MasonInstall vtsls
 > ```
 >
 > Also, `deno` is installed by Mason but never enabled via

@@ -106,8 +106,8 @@ nvim
 | Vue | `vue` | `vue_ls` + `vtsls` | ✅ | ✅ | 经 `@vue/typescript-plugin` 共享 ts 能力 |
 | C / C++ | `c` / `cpp` / `h` / `hpp` | `clangd` | ✅ | ✅ | `<A-o>` 源文件 ↔ 头文件切换 |
 | Lua | `lua` | `lua_ls` | ✅ | ✅ | 已预置 `nvim` 全局 |
-| Python | `python` | `pyright` | ✅ | ✅ | ⚠️ 需手动安装（见下） |
-| CMake | `cmake` | `cmake-language-server` | ✅ | ✅ | ⚠️ 需手动安装（见下） |
+| Python | `python` | `pyright` | ✅ | ✅ | |
+| CMake | `cmake` | `cmake-language-server` | ✅ | ✅ | |
 
 > 跳转/查看相关按键：`gd` 定义、`gD` 声明、`gi` 实现、`gr` 引用、
 > `K` 悬停文档、`<leader>D` 类型定义。
@@ -116,12 +116,11 @@ Mason 会安装：`lua-language-server`、`stylua`、`css-lsp`、`html-lsp`、
 `typescript-language-server`、`vue-language-server`、`deno`、`prettier`、
 `clangd`、`clang-format`。
 
-> ⚠️ **一致性提示**：`vtsls`、`pyright`、`cmake-language-server` 已在
-> `lspconfig.lua` 中启用，但**不在** `:MasonInstallAll` 的安装列表里，
-> 新机器需补充执行：
+> ⚠️ **一致性提示**：`vtsls` 已在 `lspconfig.lua` 中启用，但**不在**
+> `:MasonInstallAll` 的安装列表里，新机器需补充执行：
 >
 > ```vim
-> :MasonInstall vtsls pyright cmake-language-server
+> :MasonInstall vtsls
 > ```
 >
 > 另外 `deno` 虽被 Mason 安装，但 `lspconfig.lua` 未调用

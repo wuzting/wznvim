@@ -14,6 +14,10 @@ local options = {
         -- c/cpp stuff
         "clangd",
         "clang-format",
+        "cmake-language-server",
+
+        -- python stuff
+        "pyright",
     }, -- not an option from mason.nvim
 
     PATH = "skip",
